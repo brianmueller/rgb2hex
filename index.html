@@ -71,6 +71,13 @@
                 console.error('Action:', e.action);
                 console.error('Trigger:', e.trigger);
             });
+            
+            $('#copy').click(function(){
+                $(this).html("Copied to Clipboard");
+            });
+            $('#copy').blur(function(){
+                $(this).html("Copy to Clipboard");
+            });
 
         });
     </script>
@@ -112,6 +119,11 @@
             color: white;
         }
         
+        .btn:link {
+            background-color: #333333;
+            color: white;
+        }
+        
         .btn:visited {
             background-color: #333333;
             color: white;
@@ -123,6 +135,11 @@
         }
         
         .btn:active {
+            background-color: #333333;
+            color: white;
+        }
+        
+        .btn:focus {
             background-color: #333333;
             color: white;
         }
