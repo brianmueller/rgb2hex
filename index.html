@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Bootstrap Sandbox</title>
+    <title>rgb2hex</title>
 
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 
@@ -24,15 +24,8 @@
 
         $(function() {
 
-            // splitting 1 string into 3
-            // ex: 228	191	63	
-
-
-            // converting each string into 1 hex
-
             $('#rgb').keyup(function() {
                 var rgb = $(this).val();
-                // var rgbArray = "244	150	154	".split("")
                 var rgbArray = rgb.split("")
                 var r = [];
                 var g = [];
@@ -60,11 +53,30 @@
                 $('#hex').html(hexNum);
 
                 $('body').css('background-color', hexNum);
+                
+                $('#copy').show();
             });
 
+            var clipboard = new Clipboard('.btn');
 
-        })
+            clipboard.on('success', function(e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+
+                e.clearSelection();
+            });
+
+            clipboard.on('error', function(e) {
+                console.error('Action:', e.action);
+                console.error('Trigger:', e.trigger);
+            });
+
+        });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.8/clipboard.min.js"></script>
+
     <style>
         body {
             padding-top: 50px;
@@ -90,6 +102,10 @@
             font-size: 2em;
             text-align: center;
         }
+        
+        #copy {
+            display: none;
+        }
     </style>
 </head>
 
@@ -101,7 +117,11 @@
             <h1>rgb2hex</h1>
             <input id="rgb">
             <p id="hex"></p>
+            <button id="copy" class="btn" data-clipboard-target="#hex">
+                Copy to Clipboard
+            </button>
         </div>
+
 
     </div>
 
