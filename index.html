@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Bootstrap Sandbox</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script>
+        function twoDigit(n) {
+            return n.length == 1 ? "0" + n : n;
+        }
+
+        $(function() {
+
+            // splitting 1 string into 3
+            // ex: 228	191	63	
+
+
+            // converting each string into 1 hex
+
+            $('#rgb').keyup(function() {
+                var rgb = $(this).val();
+                // var rgbArray = "244	150	154	".split("")
+                var rgbArray = rgb.split("")
+                var r = [];
+                var g = [];
+                var b = [];
+                var rgbSplit = [r, g, b];
+                var letter = 0;
+
+                for (var i = 0; i < rgbArray.length; i++) {
+                    if (/\d/.test(rgbArray[i])) { // if it is a number
+                        rgbSplit[letter].push(rgbArray[i]);
+                    }
+                    else {
+                        letter++;
+                    }
+                }
+                r = parseInt(r.join(""));
+                g = parseInt(g.join(""));
+                b = parseInt(b.join(""));
+
+                rString = twoDigit(r.toString(16));
+                gString = twoDigit(g.toString(16));
+                bString = twoDigit(b.toString(16));
+
+                var hexNum = "#" + rString + gString + bString;
+                $('#hex').html(hexNum);
+
+                $('body').css('background-color', hexNum);
+            });
+
+
+        })
+    </script>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+        
+        h1,
+        p {
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+            font-size: 6em;
+            line-height: 2em;
+            letter-spacing: 7px;
+        }
+        
+        #rgb {
+            margin: 20px;
+            font-size: 2em;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="starter-template">
+            <h1>rgb2hex</h1>
+            <input id="rgb">
+            <p id="hex"></p>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
