@@ -71,12 +71,18 @@
                 console.error('Action:', e.action);
                 console.error('Trigger:', e.trigger);
             });
-            
-            $('#copy').click(function(){
+
+            $('#copy').click(function() {
                 $(this).html("Copied!");
             });
-            $('#copy').blur(function(){
+            $('#copy').blur(function() {
                 $(this).html("Copy to Clipboard");
+            });
+
+
+            // info
+            $(document).ready(function() {
+                $('[data-toggle="popover"]').popover();
             });
 
         });
@@ -88,12 +94,12 @@
         body {
             padding-top: 50px;
         }
-        
+
         .starter-template {
             padding: 40px 15px;
             text-align: center;
         }
-        
+
         h1,
         p {
             margin: 0;
@@ -103,45 +109,50 @@
             line-height: 2em;
             letter-spacing: 7px;
         }
-        
+
         #rgb {
             margin: 20px;
             font-size: 2em;
             text-align: center;
         }
-        
+
         #copy {
             display: none;
         }
-        
+
         .btn {
             background-color: #333333;
             color: white;
         }
-        
+
         .btn:link {
             background-color: #333333;
             color: white;
         }
-        
+
         .btn:visited {
             background-color: #333333;
             color: white;
         }
-        
+
         .btn:hover {
             background-color: white;
             color: #3333;
         }
-        
+
         .btn:active {
             background-color: #333333;
             color: white;
         }
-        
+
         .btn:focus {
             background-color: #333333;
             color: white;
+        }
+
+        #i {
+            width: 20px;
+            height: 20px;
         }
     </style>
 </head>
@@ -151,7 +162,7 @@
     <div class="container">
 
         <div class="starter-template">
-            <h1>rgb2hex</h1>
+            <h1>rgb2hex<a href="#" data-toggle="popover" title="How it works" data-content="When using the Digital Color Meter on a Mac, press ⌘ SHIFT C to copy the RGB code of the color you are hovering over. Then paste here to quickly convert it to a HEX code."><img id="i" src="info.png"></a></h1>
             <input id="rgb" autofocus>
             <p id="hex"></p>
             <button id="copy" class="btn" data-clipboard-target="#hex">
